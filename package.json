@@ -1,0 +1,25 @@
+{
+  "name": "around-express",
+  "version": "1.0.0",
+  "description": "around-express project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adirx20/around-express.git"
+  },
+  "author": "Adir Sason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adirx20/around-express/issues"
+  },
+  "homepage": "https://github.com/adirx20/around-express#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
