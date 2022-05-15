@@ -8,7 +8,7 @@ const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 
 app.get('/', (req, res) => {
-  res.send('User request: ');
+  res.send('Main Page');
 });
 
 app.use(usersRouter);
