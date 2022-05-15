@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getJsonFromFile } = require('../helpers/files');
+const { getCards } = require('../controllers/cards');
 
-router.get('/cards', async (req, res) => {
-  const cards = await getJsonFromFile('./data/cards.json');
-  res.send(cards);
-});
+router.get('/cards', getCards);
 
 module.exports = router;
