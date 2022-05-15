@@ -1,27 +1,37 @@
-const { getJsonFromFile } = require('../helpers/files');
 const path = require('path');
+const { getJsonFromFile } = require('../helpers/files');
 
 const usersFilePath = path.join(__dirname, '..', 'data', 'users.json');
 
 const getUsers = async (req, res) => {
-  const users = await getJsonFromFile(usersFilePath);
+  try {
+    const users = await getJsonFromFile(usersFilePath);
 
-  res.send(users);
-}
+    res.send(users);
+  } catch (error) {
+    console.log('Error happened in getUsers: ', error);
+    res.status(500).send({ message: 'Requested resource not found' });
+  }
+};
 
 const getUserById = async (req, res) => {
-  const users = await getJsonFromFile(usersFilePath);
+  try {
+    const users = await getJsonFromFile(usersFilePath);
 
-  const user = users.find(user => user.id === req.params.user_id);
+    const user = users.find((user) => user._id === req.params.user_id);
 
-  if (!user) {
-    req.status(404).send(user);
-  } else {
-    req.send(user);
+    if (!user) {
+      res.status(404).send({ message: 'User ID not found' });
+    } else {
+      res.send(user);
+    }
+  } catch (error) {
+    console.log('Error happened in getUserById: ', error);
+    res.status(500).send({ message: 'Requested resource not found' });
   }
-}
+};
 
 module.exports = {
   getUsers,
-  getUserById
-}
+  getUserById,
+};

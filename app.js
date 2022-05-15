@@ -8,7 +8,7 @@ const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 
 app.get('/', (req, res) => {
-  res.send('Main Page');
+  res.send({ message: 'Requested resource not found' });
 });
 
 app.use(usersRouter);
@@ -16,5 +16,5 @@ app.use(usersRouter);
 app.use(cardsRouter);
 
 app.listen(PORT, () => {
-    console.log(`App listening at port ${PORT}`);
+  console.log(`App listening at port ${PORT}`);
 });
