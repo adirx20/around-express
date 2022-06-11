@@ -1,11 +1,12 @@
 const path = require('path');
-const { getJsonFromFile } = require('../helpers/files');
+const User = require('../models/user');
+const ObjectId = require('mongodb').ObjectId;
 
-const usersFilePath = path.join(__dirname, '..', 'data', 'users.json');
+// const usersFilePath = path.join(__dirname, '..', 'data', 'users.json');
 
 const getUsers = async (req, res) => {
   try {
-    const users = await getJsonFromFile(usersFilePath, res);
+    const users = await User.find({});
 
     res.send(users);
   } catch (error) {
@@ -15,9 +16,7 @@ const getUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    const users = await getJsonFromFile(usersFilePath, res);
-
-    const user = users.find((user) => user._id === req.params.user_id);
+    const user = await User.findOne({ _id: req.params.user_id });
 
     if (!user) {
       res.status(404).send({ message: 'User ID not found' });
@@ -29,7 +28,21 @@ const getUserById = async (req, res) => {
   }
 };
 
+const createUser = async (req, res) => {
+  const { name, about, avatar } = req.body;
+  console.log(`${req.body.name} Got request body`);
+
+  try {
+    const newUser = await User.create({ name: name, about: about, avatar: avatar });
+
+    res.send(newUser);
+  } catch (error) {
+    res.status(500).send({ message: 'Requested resource not found' });
+  }
+};
+
 module.exports = {
   getUsers,
   getUserById,
+  createUser,
 };

@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -10,6 +11,9 @@ const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 
 mongoose.connect('mongodb://localhost:27017/aroundb');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(helmet());
 
