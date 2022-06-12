@@ -5,9 +5,9 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   name: {
-    type: String, // sets the datatype - see options below
-    required: true, // every instance has to have this field
-    minlength: 2,  // we can specify min/max length of fields
+    type: String,
+    required: true,
+    minlength: 2,
     maxlength: 30,
   },
   about: {
