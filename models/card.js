@@ -11,17 +11,17 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: function (value) {
-        return (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(value))
+      validator: function (v) {
+        return (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(v))
       }
     }
   },
   owner: {
-    type: ObjectId,
+    type: String,
     required: true,
   },
   likes: {
-    type: ObjectId,
+    type: Array,
     default: [],
   },
   createdAt: {

@@ -1,6 +1,5 @@
-const path = require('path');
+// const path = require('path');
 const User = require('../models/user');
-const ObjectId = require('mongodb').ObjectId;
 
 // const usersFilePath = path.join(__dirname, '..', 'data', 'users.json');
 
@@ -30,14 +29,16 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
   const { name, about, avatar } = req.body;
-  console.log(`${req.body.name} Got request body`);
 
   try {
-    const newUser = await User.create({ name: name, about: about, avatar: avatar });
 
-    res.send(newUser);
+    const newUser = await User.create({ name: name, about: about, avatar: avatar });
+    res.status(201).send(newUser);
+
   } catch (error) {
+
     res.status(500).send({ message: 'Requested resource not found' });
+
   }
 };
 

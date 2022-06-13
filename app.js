@@ -12,18 +12,24 @@ const cardsRouter = require('./routes/cards');
 
 mongoose.connect('mongodb://localhost:27017/aroundb');
 
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(helmet());
 
 app.get('/', (req, res) => {
   res.status(404).send({ message: 'Requested resource not found' });
 });
 
-app.use(usersRouter);
+app.use((req, res, next) => {
+  req.user = {
+    _id: '62a7b01ae992a78170f661ac'
+  };
 
-app.use(cardsRouter);
+  next();
+});
+
+app.use('/users' ,usersRouter);
+app.use('/cards' ,cardsRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
