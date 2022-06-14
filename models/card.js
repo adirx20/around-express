@@ -11,10 +11,8 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: function (v) {
-        return (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(v))
-      }
-    }
+      validator: (v) => (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(v)),
+    },
   },
   owner: {
     type: String,

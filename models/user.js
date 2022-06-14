@@ -17,10 +17,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: function (value) {
-        return (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(value))
-      }
-    }
+      validator: (v) => (/^http(s)?:\/{2}(w{3}.)?[\w-]+.\w+/ig.test(v)),
+    },
   },
 });
 

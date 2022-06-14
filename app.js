@@ -22,14 +22,14 @@ app.get('/', (req, res) => {
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '62a7b01ae992a78170f661ac'
+    _id: '62a7b01ae992a78170f661ac',
   };
 
   next();
 });
 
-app.use('/users' ,usersRouter);
-app.use('/cards' ,cardsRouter);
+app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
