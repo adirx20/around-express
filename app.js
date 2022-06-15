@@ -16,10 +16,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.status(404).send({ message: 'Requested resource not found' });
-});
-
 app.use((req, res, next) => {
   req.user = {
     _id: '62a7b01ae992a78170f661ac',
@@ -30,6 +26,10 @@ app.use((req, res, next) => {
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
+
+app.use('/', (req, res) => {
+  res.status(404).send({ message: 'Requested resource not found' });
+});
 
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);

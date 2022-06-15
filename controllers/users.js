@@ -1,3 +1,4 @@
+const e = require('express');
 const User = require('../models/user');
 
 const getUsers = async (req, res) => {
@@ -16,13 +17,15 @@ const getUserById = async (req, res) => {
 
     if (!user) {
       res.status(404).send({ message: 'User ID not found' });
+    } else {
+      res.send(user);
     }
-    res.send(user);
   } catch (error) {
     if (error.name === 'CastError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
@@ -35,8 +38,9 @@ const createUser = async (req, res) => {
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
@@ -51,7 +55,11 @@ const updateProfile = async (req, res) => {
     );
     res.status(200).send(user);
   } catch (error) {
-    res.status(500).send({ message: 'Something is not working...' });
+    if (error.name === 'ValidationError') {
+      res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
+    }
   }
 };
 
@@ -68,8 +76,9 @@ const updateProfileAvatar = async (req, res) => {
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 

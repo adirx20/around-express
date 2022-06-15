@@ -1,7 +1,4 @@
-// const path = require('path');
 const Card = require('../models/card');
-
-// const cardsFilePath = path.join(__dirname, '..', 'data', 'cards.json');
 
 const getCards = async (req, res) => {
   try {
@@ -24,8 +21,9 @@ const createCard = async (req, res) => {
   } catch (error) {
     if (error.name === 'ValidationError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
@@ -37,13 +35,15 @@ const deleteCard = async (req, res) => {
 
     if (!card) {
       res.status(404).send({ message: 'Card not found' });
+    } else {
+      res.status(200).send({ message: `${cardId} - This card has been deleted successfully` });
     }
-    res.status(200).send({ message: `${cardId} - This card has been deleted successfully` });
   } catch (error) {
     if (error.name === 'CastError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
@@ -59,13 +59,15 @@ const likeCard = async (req, res) => {
 
     if (card === null) {
       res.status(404).send({ message: 'Card ID not found' });
+    } else {
+      res.status(200).send({ message: 'Card is liked' });
     }
-    res.status(200).send({ message: 'Card is liked' });
   } catch (error) {
     if (error.name === 'CastError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
@@ -80,13 +82,15 @@ const dislikeCard = async (req, res) => {
     );
     if (card === null) {
       res.status(404).send({ message: 'Card ID not found' });
+    } else {
+      res.status(200).send({ message: 'Card is not liked' });
     }
-    res.status(200).send({ message: 'Card is not liked' });
   } catch (error) {
     if (error.name === 'CastError') {
       res.status(400).send({ message: 'Invalid input' });
+    } else {
+      res.status(500).send({ message: 'Something is not working...' });
     }
-    res.status(500).send({ message: 'Something is not working...' });
   }
 };
 
