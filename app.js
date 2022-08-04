@@ -15,7 +15,7 @@ const cardsRouter = require('./routes/cards');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-mongoose.connect('mongodb://localhost:27017/aroundb');
+mongoose.connect('mongodb://0.0.0.0:27017/aroundb');
 
 app.use(cors());
 app.options('*', cors());
