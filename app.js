@@ -6,6 +6,9 @@ const helmet = require('helmet');
 // const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
+
+require('dotenv').config();
+
 const { PORT = 3000 } = process.env;
 
 const app = express();
