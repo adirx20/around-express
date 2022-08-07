@@ -25,7 +25,8 @@ const createCard = async (req, res, next) => {
       res.status(400).send({ message: 'Invalid input' });
     } else {
       console.log('server error', error);
-      next(error);
+      res.status(500).send({ message: `server error: ${error}` });
+      // next(error);
       // res.status(500).send({ message: 'Something is not working...' });
     }
   }
