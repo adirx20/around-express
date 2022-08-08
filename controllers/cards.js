@@ -21,14 +21,17 @@ const createCard = async (req, res, next) => {
     const newCard = await Card.create({ name, link, owner });
     res.status(201).send(newCard);
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      res.status(400).send({ message: 'Invalid input' });
-    } else {
-      console.log('server error', error);
-      res.status(500).send({ message: `server error: ${error}` });
-      // next(error);
-      // res.status(500).send({ message: 'Something is not working...' });
-    }
+    res.send({ message: error });
+    next(error);
+
+    // if (error.name === 'ValidationError') {
+    //   res.status(400).send({ message: 'Invalid input' });
+    // } else {
+    //   console.log('server error', error);
+    //   res.status(500).send({ message: `server error: ${error}` });
+    // next(error);
+    // res.status(500).send({ message: 'Something is not working...' });
+    // }
   }
 };
 
