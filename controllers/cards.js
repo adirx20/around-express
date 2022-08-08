@@ -21,7 +21,8 @@ const createCard = async (req, res, next) => {
     const newCard = await Card.create({ name, link, owner });
     res.status(201).send(newCard);
   } catch (error) {
-    res.send({ message: error });
+    console.log('this is error: ', error);
+    res.send({ message: `this is the error that I send: ${error}` });
     next(error);
 
     // if (error.name === 'ValidationError') {
