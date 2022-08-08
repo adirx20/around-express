@@ -14,6 +14,7 @@ const getCards = async (req, res, next) => {
 
 const createCard = async (req, res, next) => {
   const { name, link } = req.body;
+  console.log('this is data of create card: ', name, link);
 
   try {
     const owner = req.user._id;
