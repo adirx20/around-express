@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.post('/signin', login);
 // app.post('/signup', createUser);
 
-// app.use(auth);
+app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
