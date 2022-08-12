@@ -9,7 +9,7 @@ const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
 
 require('dotenv').config();
 
-const { PORT = 3003 } = process.env;
+const { PORT = 3002 } = process.env;
 
 const app = express();
 
