@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const { auth } = require('../middlewares/auth');
+
 const {
   getCards,
   createCard,
@@ -10,7 +12,7 @@ const {
   dislikeCard,
 } = require('../controllers/cards');
 
-router.get('/', getCards);
+router.get('/', auth, getCards);
 router.post('/', createCard);
 router.delete('/:card_id', deleteCard);
 router.put('/:card_id/likes', likeCard);
