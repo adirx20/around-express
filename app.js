@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 // const { login, createUser } = require('./controllers/users');
-const { auth } = require('./middlewares/auth');
+// const { auth } = require('./middlewares/auth');
 const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
 
 require('dotenv').config();
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.post('/signin', login);
 // app.post('/signup', createUser);
 
-app.use(auth);
+// app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);

@@ -61,6 +61,7 @@ const deleteCard = async (req, res, next) => {
 
 const likeCard = async (req, res, next) => {
   const cardId = req.params.card_id;
+  console.log('this is card id', cardId)
 
   try {
     const card = await Card.findOneAndUpdate(
