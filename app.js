@@ -1,13 +1,10 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
-const winston = require('winston');
-const celebrate = require('celebrate');
 const cors = require('cors');
 const helmet = require('helmet');
-// const { login, createUser } = require('./controllers/users');
-// const { auth } = require('./middlewares/auth');
 const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
+const { AppError } = require('./errors/AppError');
 
 require('dotenv').config();
 
@@ -33,7 +30,8 @@ app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
 app.use('/', (req, res) => {
-    res.status(404).send({ message: 'Requested resource not found' });
+  throw new AppError(404, 'Requested resource was not found');
+    // res.status(404).send({ message: 'Requested resource not found' });
 });
 
 app.use(errorLogger);
